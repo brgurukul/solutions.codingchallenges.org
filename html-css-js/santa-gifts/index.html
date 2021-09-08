@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenges Solution - Santa Gifts</title>
+
+    <!-- CSS -->
+    <style>
+      * {
+        font-family: Helvetica, sans-serif;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .santa-gifts {
+        display: flex;
+        gap: 2rem;
+      }
+      .santa {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 400px;
+      }
+      .santa .avatar {
+        font-size: 80px;
+      }
+      .santa #present-gift {
+        padding: 8px 15px;
+        background: steelblue;
+        border: 1px solid steelblue;
+        color: #fff;
+        border-radius: 4px;
+      }
+      .santa-gifts > div {
+        border: 1px solid #666;
+        padding: 2rem;
+      }
+      .santa-gifts #gifts {
+        background: #eee;
+        width: 350px;
+        gap: 1rem;
+      }
+      .santa-gifts #gifts .gift {
+        font-size: 50px;
+        display: inline-block;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading">Santa Gifts</h1>
+      <div class="santa-gifts">
+        <div class="santa">
+          <div class="avatar">&#127877;</div>
+          <button id="present-gift">Present Gift</button>
+        </div>
+        <div id="gifts">
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      var emojisData = {
+        smile: "&#128522;",
+        cake: "&#127874;",
+        wine: "&#127863;",
+        champagne: "&#127870",
+        popcorn: "&#127871;",
+        beer: "&#127866;",
+        doublebeer: "&#127867;",
+        chocolate: "&#127851;",
+        icecreamcone: "&#127846;",
+        icecreamcup: "&#127847;",
+        laptop: "&#128187;",
+        camera: "&#128247;",
+        mobile: "&#128241;"
+      }
+
+      // random number
+      function randomNum(maxLimit = 100){
+        let rand = Math.random() * maxLimit;
+        return Math.floor(rand);
+      }
+
+      // return emoji image when given emoji name
+      function emojify(name) {
+        return emojis[name];
+      }
+
+      function randomEmoji() {
+        // get emojis values
+        const emojis = Object.values(emojisData)
+
+        // get total emojis
+        const totalEmojis = emojis.length
+
+        // get any random value limited to total emojis
+        const giftNum = randomNum(totalEmojis)
+
+        // return random emoji
+        return emojis[giftNum];
+      }
+
+      document.getElementById('present-gift').addEventListener('click', () => {
+        const giftNode = document.createElement("span");
+        giftNode.className = "gift";
+        giftNode.innerHTML = randomEmoji();
+
+        document.getElementById('gifts').appendChild(giftNode);
+      })
+    </script>
+  </body>
+</html>
